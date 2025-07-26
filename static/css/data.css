@@ -1,0 +1,335 @@
+/* ==================== */
+/* GLOBAL STYLES        */
+/* ==================== */
+/* Reset default margins/padding and use border-box model */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Includes padding/border in element dimensions */
+}
+
+/* Navbar */
+.navbar {
+    background-color: #002d53; /* Dark blue background for the navbar */
+    padding: 20px 50px; /* Spacing inside the navbar */
+    display: flex;
+    justify-content: space-between; /* Ensures space between brand and links */
+    align-items: center; /* Centers the items vertically */
+    position: fixed; /* Keeps the navbar fixed at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100; /* Ensures navbar stays above other content */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Adds a shadow for depth */
+    border-radius: 80px; /* Softens corners for a smooth look */
+}
+
+.navbar .nav-brand {
+    font-size: 26px;
+    font-weight: 700; /* Bold brand name for better visibility */
+    color: #ffcc00; /* Yellow color for the brand name */
+    text-decoration: none;  /* Removes the underline */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex; /* Aligns links horizontally */
+}
+
+.nav-links li {
+    margin: 0 15px; /* Adds spacing between each link */
+}
+
+.nav-links a {
+    color: #fff; /* White text for links */
+    text-decoration: none;
+    font-weight: 600; /* Semi-bold links for emphasis */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+}
+
+.nav-links a:hover {
+    color: #ffcc00; /* Yellow color on hover */
+    transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+/* Base page styling */
+body {
+    font-family: 'Inter', sans-serif; /* Modern system font stack */
+    background: linear-gradient(135deg, #4e82db, #01c2ff); /* Blue gradient background */
+    color: #fff; /* White text for contrast */
+    min-height: 100vh; /* Full viewport height */
+    padding: 60px 20px; /* Page spacing */
+}
+
+/* ==================== */
+/* MAIN CONTAINER        */
+/* ==================== */
+.container {
+    max-width: 1400px; /* Content width limit */
+    margin: 5% auto; /* Center container */
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent dark overlay */
+    border-radius: 30px; /* Rounded corners */
+    padding: 40px; /* Inner spacing */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); /* Depth shadow */
+}
+
+/* ==================== */
+/* BUTTON STYLES        */
+/* ==================== */
+button {
+    padding: 12px 30px 12px 20px;
+    background: linear-gradient(135deg, #ffcc00, #ffaa00); /* Gradient effect */
+    color: #002d53;
+    border: none;
+    border-radius: 10px; /* Slightly larger radius */
+    font-weight: 700; /* Bolder text */
+    font-size: 1.1rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth transition */
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(255, 204, 0, 0.2); /* Layered shadow */
+    border: 1px solid rgba(255, 204, 0, 0.3); /* Subtle border */
+}
+
+/* Hover state */
+button:hover {
+    background: linear-gradient(135deg, #ffbb00, #ff9900);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 8px 15px rgba(255, 153, 0, 0.4),
+        0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Active state */
+button:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        inset 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus state */
+button:focus {
+    outline: none;
+    box-shadow: 
+        0 0 0 3px rgba(255, 204, 0, 0.3),
+        0 8px 15px rgba(255, 153, 0, 0.4);
+}
+
+
+/* ==================== */
+/* STATUS & LOADER      */
+/* ==================== */
+#status {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1); /* Light overlay */
+    border-radius: 10px; /* Soft edges */
+}
+
+/* Animated loading spinner */
+.loader {
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid #ffcc00;
+    border-right: 3px solid #ff9900; /* Gradient effect using border colors */
+    border-radius: 50%;
+    position: relative;
+    animation: 
+        spin 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite, /* Bouncy rotation */
+        pulse 2s ease-in-out infinite; /* Pulsing effect */
+    box-shadow: 
+        0 0 12px rgba(255, 204, 0, 0.2), /* Outer glow */
+        inset 0 0 6px rgba(255, 204, 0, 0.1); /* Inner glow */
+    backdrop-filter: blur(2px); /* Subtle blur effect */
+}
+
+/* ==================== */
+/* WEATHER DISPLAY      */
+/* ==================== */
+/* Grid layout for weather cards */
+
+/* Define theme variables for easy adjustments */
+:root {
+    --brand-yellow: #ffcc00;
+    --card-bg: rgba(255, 255, 255, 0.15);
+    --card-border: rgba(255, 255, 255, 0.25);
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Responsive grid container with wider cards */
+  .weather-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); /* Increased minimum width */
+    gap: 30px; /* More space between cards */
+    margin-top: 40px; /* Extra top spacing */
+    padding: 0 20px; /* Side padding for better alignment on smaller screens */
+  }
+  
+  /* Individual weather card styling with enhanced glass effect */
+  .weather-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px; /* Slightly more rounded corners */
+    padding: 25px;
+    backdrop-filter: blur(10px); /* Stronger frosted glass effect */
+    box-shadow: 0 8px 32px var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Card hover effect: a subtle lift with a deeper shadow */
+  .weather-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px var(--shadow-dark);
+  }
+  
+  /* Card heading style with improved font sizing and spacing */
+  .weather-card h3 {
+    color: var(--brand-yellow);
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+
+/* ==================== */
+/* SEARCH COMPONENTS    */
+/* ==================== */
+.search-box {
+    background: rgba(255, 255, 255, 0.1); /* Light overlay */
+    padding: 20px; /* Inner spacing */
+    border-radius: 12px; /* Rounded edges */
+    margin: 20px 0; /* Vertical spacing */
+}
+
+/* Dropdown menu styling */
+select {
+    background: rgba(245, 229, 6, 0.15); 
+    color: #1a1a1a; /* Darker text for better contrast */
+    border: 2px solid rgba(255, 204, 0, 0.4); /* Brand yellow border */
+    border-radius: 10px; /* Slightly larger radius */
+    padding: 12px 40px 12px 20px; /* Better spacing + arrow space */
+    font-size: 16px; /* Improved readability */
+    transition: all 0.3s ease;
+    appearance: none; /* Remove default system styling */
+    background-image: 
+        linear-gradient(45deg, transparent 50%, #ffcc00 50%),
+        linear-gradient(135deg, #ffcc00 50%, transparent 50%);
+    background-position: 
+        calc(100% - 20px) center,
+        calc(100% - 15px) center;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    box-shadow: 
+        inset 0 1px 3px rgba(255, 204, 0, 0.2), /* Inner glow */
+        0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle outer shadow */
+}
+
+/* Hover state */
+select:hover {
+    border-color: #ffcc00;
+    box-shadow: 
+        inset 0 1px 3px rgba(255, 204, 0, 0.3),
+        0 4px 12px rgba(255, 204, 0, 0.15);
+    background-color: rgba(245, 229, 6, 0.2);
+}
+
+/* Focus state */
+select:focus {
+    outline: none;
+    border-color: #ffcc00;
+    box-shadow: 
+        inset 0 1px 3px rgba(255, 204, 0, 0.4),
+        0 0 0 3px rgba(255, 204, 0, 0.15); /* Glow effect */
+    background-color: rgba(245, 229, 6, 0.25);
+}
+
+/* Custom arrow styling */
+select::-ms-expand {
+    display: none; /* Hide default arrow in IE */
+}
+
+/* Status messages */
+#status {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+/* ==================== */
+/* CHARTS AND CANVAS    */
+/* ==================== */
+
+.chartContainer {
+    display: none; /* Initially hidden until data is available */
+    max-width: 1600px; /* Reduced width for better centering */
+    justify-content: center; /* Center-align the charts */
+    align-items: center;
+    flex-wrap: wrap; /* Ensure charts adjust on smaller screens */
+    gap: 20px; /* Reduced gap for better spacing */
+    width: 80%; /* Takes up 80% of screen width */
+    margin: 40px auto; /* Centers horizontally */
+    padding: 20px;
+    background: rgba(0, 45, 83, 0.8); /* Darker semi-transparent background */
+    border-radius: 20px; /* Soft edges */
+    backdrop-filter: blur(12px); /* Frosted glass effect */
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.3), 
+        inset 0 6px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Individual charts */
+canvas {
+    display: flex; /* Initially hidden */
+    background: rgba(255, 255, 255, 0.842); /* Light background for readability */
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 
+        0 5px 10px rgba(0, 0, 0, 0.2), 
+        inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+/* Ensure text inside charts is visible */
+.chartContainer canvas {
+    color: #002d53; /* Dark blue text for contrast */
+}
+
+
+/* ==================== */
+/* RESPONSIVE DESIGN    */
+/* ==================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px; /* Reduced spacing */
+        border-radius: 20px; /* Smaller radius */
+    }
+    
+    .weather-grid {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+    
+    .weather-card {
+        padding: 15px; /* Compact spacing */
+    }
+}
+/* Responsive fix for smaller screens */
+@media (max-width: 768px) {
+    .chartContainer {
+        width: 90%; /* More width on smaller screens */
+        padding: 20px;
+        gap: 20px;
+    }
+}
+/* ==================== */
+/* ANIMATIONS           */
+/* ==================== */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); } /* Full rotation */
+}

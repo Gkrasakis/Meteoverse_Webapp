@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic HTML metadata -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Weather App</title>
+
+    <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+<body>
+    <!-- Main container for the registration page -->
+    <div class="register-container">
+        <!-- Box for the registration form -->
+        <div class="register-box">
+            <!-- Page heading -->
+            <h2>Register for Weather App</h2>
+            
+            <!-- Registration form -->
+            <form method="POST" action="/register"> <!-- Form submits data to the `/register` route with POST method -->
+                <!-- Include CSRF token for security (provided by Flask-WTF) -->
+                {{ form.hidden_tag() }}
+                
+                <!-- Username input field -->
+                <div class="form-group">
+                    <!-- Render the username input field with a placeholder -->
+                    {{ form.username(class="form-input", placeholder="Username") }}
+                    
+                    <!-- Render validation errors for username, if any -->
+                    {% for error in form.username.errors %}
+                    <small class="text-danger">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                
+                <!-- Email input field -->
+                <div class="form-group">
+                    <!-- Render the email input field with a placeholder -->
+                    {{ form.email(class="form-input", placeholder="Email") }}
+                    
+                    <!-- Render validation errors for email, if any -->
+                    {% for error in form.email.errors %}
+                    <small class="text-danger">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                
+                <!-- Password input field -->
+                <div class="form-group">
+                    <!-- Render the password input field with a placeholder -->
+                    {{ form.password(class="form-input", placeholder="Password") }}
+                    
+                    <!-- Render validation errors for password, if any -->
+                    {% for error in form.password.errors %}
+                    <small class="text-danger">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                
+                <!-- Confirm Password input field -->
+                <div class="form-group">
+                    <!-- Render the confirm password input field with a placeholder -->
+                    {{ form.confirm_password(class="form-input", placeholder="Confirm Password") }}
+                    
+                    <!-- Render validation errors for confirm password, if any -->
+                    {% for error in form.confirm_password.errors %}
+                    <small class="text-danger">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                
+                <!-- Submit button -->
+                <div class="form-group">
+                    <!-- Render the submit button with a specified class for styling -->
+                    {{ form.submit(class="form-button") }}
+            </form>
+        </div>
+    </div>
+</body>
+</html>

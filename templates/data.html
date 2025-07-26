@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Data Collector</title>
+     <!-- Link to external CSS file for styling the page -->
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/data.css') }}">
+     <meta name="csrf-token" content="{{ csrf_token() }}">
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <!-- Logo or brand name -->
+        <a href="/" class="nav-brand">Weather App</a>
+
+        <!-- Navigation links -->
+        <ul class="nav-links">
+            <li><a href="/">Weather</a></li>
+            <li><a href="/data">Statistics</a></li>
+            <li><a href="#favorites">Favorites</a></li>
+            <li><a href="{{ url_for('logout') }}" id="logout">Logout</a></li>
+        </ul>
+    </nav>
+
+
+
+<div class="container">
+    <h1>Weather Data Collector</h1>
+    <div class="search-box">
+        <select id="citySelect">
+            <option value="">Select a City</option>
+            <option value="Athens">Athens</option>
+            <option value="Thessaloniki">Thessaloniki</option>
+            <option value="Corfu">Corfu</option>
+            <option value="Crete">Crete</option>
+            <option value="Larissa">Larissa</option>
+            <option value="Rhodes">Rhodes</option>
+        </select>
+        <button onclick="startCollection()">Collect Weather Data</button>
+
+        <label for="filterInterval">Select Data Interval:</label>
+        <select id="filterInterval">
+        <option value="1"> 3 hours</option>
+        <option value="2"> 6 hours</option>
+        <option value="3"> 9 hours</option>
+        <!-- Add more options as needed -->
+        </select>
+        <button id="applyFilter" >Apply Filter</button>
+    </div>
+    
+    
+    <div id="status">
+        <div class="loader"></div>
+        <p id="message"></p>
+    </div>
+
+  <!--<div id="weatherData" class="weather-grid"></div> --> 
+</div>
+
+<div class ="chartContainer">
+    <!-- Container to show chart -->
+    <canvas id="weatherChart" width="400" height="200"></canvas>
+    <canvas id="windRainChart" width="400" height="200"></canvas>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

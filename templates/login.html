@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic HTML metadata -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Weather App</title>
+
+    <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <!-- Main container for the login page -->
+    <div class="login-container">
+        <!-- Box for the login form -->
+        <div class="login-box">
+            <!-- Page heading -->
+            <h2>Login to Weather App</h2>
+            
+            <!-- Login form -->
+            <form method="POST" action="/login"> <!-- Form submits to the `/login` route with POST method -->
+                <!-- Include CSRF token for security (provided by Flask-WTF) -->
+                {{ form.hidden_tag() }}
+                
+                  <!-- Username input field -->
+                  <div class="form-group">
+                    <!-- Render the label for the username field -->
+                    {{ form.username.label }}
+
+                    <!-- Render the username input field with placeholder text -->
+                    {{ form.username(class="form-control", placeholder="Enter your username") }}
+                    
+                    <!-- Display validation errors for the username field, if any -->
+                    {% for error in form.username.errors %}
+                    <small class="text-danger">{{ error }}</small> <!-- Styling errors in red -->
+                    {% endfor %}
+                </div>
+                
+                <!-- Password input field -->
+                <div class="form-group">
+                    <!-- Render the label for the password field -->
+                    {{ form.password.label }}
+
+                    <!-- Render the password input field with placeholder text -->
+                    {{ form.password(class="form-control", placeholder="Enter your password") }}
+                    
+                    <!-- Display validation errors for the password field, if any -->
+                    {% for error in form.password.errors %}
+                    <small class="text-danger">{{ error }}</small> <!-- Styling errors in red -->
+                    {% endfor %}
+                </div>
+                
+                 <!-- Submit button -->
+                 <div class="form-group">
+                    <!-- Render the submit button with the specified class for styling -->
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

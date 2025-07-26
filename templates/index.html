@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta information for proper character encoding and responsiveness -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title of the page displayed in the browser tab -->
+    <title>Weather App</title>
+
+    <!-- Google Fonts link for custom font styling -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Link to external CSS file for styling the page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <!-- Logo or brand name -->
+        <a href="/" class="nav-brand">Weather App</a>
+
+        <!-- Navigation links -->
+        <ul class="nav-links">
+            <li><a href="/">Weather</a></li>
+            <li><a href="/data">Statistics</a></li>
+            <li><a href="#favorites">Favorites</a></li>
+            <li><a href="{{ url_for('logout') }}" id="logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+
+        <!-- Weather Forecast Section -->
+        <section id="weather" class="weather-section">
+            <h1>Weather Forecast</h1>
+            <p>Search for weather information by location.</p>
+
+            <!-- Weather Search Form -->
+            <!-- The form takes a city name input and triggers the search when the user clicks 'Search' -->
+            <form id="weatherForm" class="weather-form">
+                <input type="text" id="city" class="city-input" placeholder="Enter city name" required>
+                <button type="button" id="searchWeather" class="search-button">Search</button>
+            </form>
+
+            <!-- Weather Display Area -->
+            <!-- This is where the weather data will be displayed after the user searches for a city -->
+            <div id="weatherBox" class="weather-box"></div>
+            
+        </section>
+
+        <!-- Favorites Section -->
+        <!-- Placeholder for saving and displaying favorite locations (could be implemented in the future) -->
+        <section id="favorites" class="favorites-section">
+            <!-- <h1>Your Favorite Locations</h1>
+            <p>No favorite locations saved yet.</p> -->
+        </section>
+
+    </main>
+
+    <!-- Link to external JavaScript file -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
